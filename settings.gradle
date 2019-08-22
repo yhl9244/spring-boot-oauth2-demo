@@ -1,0 +1,4 @@
+//rootProject.name = "spring-oauth2-demo"
+include("sso-auth-server")
+include("sso-auth-client")
+include("sso-auth-resource")

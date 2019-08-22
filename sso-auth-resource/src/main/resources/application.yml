@@ -1,0 +1,31 @@
+# 认证服务器地址
+auth-server: http://localhost:8080
+
+server:
+  port: 8086
+security:
+  oauth2:
+    client:
+      client-id: testclient
+      client-secret: testclient
+      scope: test
+      access-token-uri: ${auth-server}/oauth/token
+      user-authorization-uri: ${auth-server}/oauth/authorize
+    resource:
+      jwt:
+        #解析jwt令牌所需要密钥的地址
+        key-uri: ${auth-server}/oauth/token_key
+
+spring:
+  application:
+    name: sso-res
+  cloud:
+    consul:
+      discovery:
+        hostname: localhost
+        instance-id: ${spring.application.name}:${spring.cloud.consul.discovery.hostname}:${server.port}
+      host: localhost
+      port: 8500
+feign:
+  okhttp:
+    enabled: true
